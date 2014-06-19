@@ -1,0 +1,3 @@
+1、数据源配置：conf/db.php
+2. 数据库脚本：install/data.sql
+2、登陆后台http://您的域名/admin.php 帐号和密码都是 admin
