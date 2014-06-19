@@ -27,6 +27,6 @@
 		curl_close($cu);
 		echo $menu_json;
 	}else{
-		echo "空间不支持！请询问空间商是否开启curl和allow_url_fopen";
+		echo "44空间不支持！请询问空间商是否开启curl和allow_url_fopen";
 	}
 ?>
