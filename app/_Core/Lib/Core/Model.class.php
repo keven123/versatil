@@ -775,9 +775,9 @@ class Model {
         }elseif(is_object($data)){
             $data   =   get_object_vars($data);
         }
-		
         // 验证数据
         if(empty($data) || !is_array($data)) {
+
             $this->error = L('_DATA_TYPE_INVALID_');
             return false;
         }
@@ -879,8 +879,10 @@ class Model {
             'english'   =>  '/^[A-Za-z]+$/',
         );
         // 检查是否有内置的正则表达式
+        
         if(isset($validate[strtolower($rule)]))
             $rule       =   $validate[strtolower($rule)];
+
         return preg_match($rule,$value)===1;
     }
 
@@ -946,6 +948,7 @@ class Model {
         }elseif(!empty($this->_validate)){
             $_validate   =   $this->_validate;
         }
+
         // 属性验证
         if(isset($_validate)) { // 如果设置了数据自动验证则进行数据验证
             if($this->patchValidate) { // 重置验证错误信息
@@ -962,6 +965,7 @@ class Model {
                     $val[3]  =  isset($val[3])?$val[3]:self::EXISTS_VALIDATE;
                     $val[4]  =  isset($val[4])?$val[4]:'regex';
                     // 判断验证条件
+
                     switch($val[3]) {
                         case self::MUST_VALIDATE:   // 必须验证 不管表单是否有设置该字段
                             if(false === $this->_validationField($data,$val)) 
@@ -979,6 +983,7 @@ class Model {
                     }
                 }
             }
+
             // 批量验证的时候最后返回错误
             if(!empty($this->error)) return false;
         }
@@ -995,6 +1000,7 @@ class Model {
      */
     protected function _validationField($data,$val) {
         if(false === $this->_validationFieldItem($data,$val)){
+
             if($this->patchValidate) {
                 $this->error[$val[0]]   =   $val[2];
             }else{
@@ -1051,6 +1057,7 @@ class Model {
                 if($this->where($map)->find())   return false;
                 return true;
             default:  // 检查附加规则
+
                 return $this->check($data[$val[0]],$val[1],$val[4]);
         }
     }
@@ -1064,7 +1071,9 @@ class Model {
      * @return boolean
      */
     public function check($value,$rule,$type='regex'){
+
         switch(strtolower(trim($type))) {
+
             case 'in': // 验证是否在某个指定范围之内 逗号分隔字符串或者数组
                 $range   = is_array($rule)?$rule:explode(',',$rule);
                 return in_array($value ,$range);

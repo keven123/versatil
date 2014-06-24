@@ -104,7 +104,8 @@ abstract class Action {
      * @return void
      */
     protected function display($templateFile='',$charset='',$contentType='',$content='',$prefix='') {
-        $this->initView();
+    
+    	$this->initView();
         $this->view->display($templateFile,$charset,$contentType,$content,$prefix);
     }
 
